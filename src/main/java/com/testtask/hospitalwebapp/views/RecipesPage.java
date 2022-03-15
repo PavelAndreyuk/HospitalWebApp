@@ -1,4 +1,7 @@
 package com.testtask.hospitalwebapp.views;
 
-public class RecipesPage {
+import com.vaadin.flow.router.Route;
+
+@Route(value = "recipes", layout = RootLayout.class)
+public class RecipesPage extends AppBar {
 }

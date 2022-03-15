@@ -12,28 +12,28 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-//@Service
-//@Profile("dev")
-//public class InMemoryPatientService implements PatientService {
-//    private final Map<Long, Patient> patients = new HashMap<>();
-//
-//    @Nullable
-//    @Override
-//    public Patient save(@NotNull Patient patient) {
-//        if (patient == null) throw new NullPointerException("Patient required");
-//
-//        return patients.put(patient.getId(), patient);
-//    }
-//
-//    @Override
-//    public void delete(@NotNull Patient patient) {
-//        if (patient == null) throw new NullPointerException("Patient required");
-//
-//        patients.remove(patient.getId());
-//    }
-//
-//    @Override
-//    public List<Patient> getAll() {
-//        return new ArrayList<>(patients.values());
-//    }
-//}
+@Service
+@Profile("dev")
+public class InMemoryPatientService implements PatientService {
+    private final Map<Long, Patient> patients = new HashMap<>();
+
+    @Nullable
+    @Override
+    public Patient save(@NotNull Patient patient) {
+        if (patient == null) throw new NullPointerException("Patient required");
+
+        return patients.put(patient.getId(), patient);
+    }
+
+    @Override
+    public void delete(@NotNull Patient patient) {
+        if (patient == null) throw new NullPointerException("Patient required");
+
+        patients.remove(patient.getId());
+    }
+
+    @Override
+    public List<Patient> getAll() {
+        return new ArrayList<>(patients.values());
+    }
+}

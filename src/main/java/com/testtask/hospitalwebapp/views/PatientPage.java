@@ -3,12 +3,11 @@ package com.testtask.hospitalwebapp.views;
 import com.testtask.hospitalwebapp.models.Patient;
 import com.testtask.hospitalwebapp.services.PatientService;
 import com.vaadin.flow.component.grid.Grid;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.router.Route;
 import org.springframework.beans.factory.annotation.Autowired;
 
-@Route(value = "patients")
-public class PatientPage extends HorizontalLayout {
+@Route(value = "patients", layout = RootLayout.class)
+public class PatientPage extends AppBar {
     private final PatientService patientService;
 
     private void insertPatients() {
