@@ -12,7 +12,7 @@ public class PatientPage extends HorizontalLayout {
     private final PatientService patientService;
 
     private void insertPatients() {
-        patientService.save(new Patient("Pavel", "Andreyuk", "Alekseevich", "89171221876"));
+        patientService.save(new Patient("Pave", "Andreyuk", "Alekseevich", "89171221876"));
         patientService.save(new Patient("Daria", "Evdokimova", "Anatolevna", "89297126421"));
     }
 
