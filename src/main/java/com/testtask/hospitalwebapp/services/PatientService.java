@@ -10,6 +10,4 @@ public interface PatientService {
     void delete(Patient patient);
 
     List<Patient> getAll();
-
-    Patient findById(long id);
 }

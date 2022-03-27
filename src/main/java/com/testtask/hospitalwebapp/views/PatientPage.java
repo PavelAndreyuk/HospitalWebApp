@@ -26,7 +26,6 @@ public class PatientPage extends AppBar implements BeforeEnterObserver {
 
     private final Grid<Patient> patientsGrid = new Grid<>();
     private final List<Patient> patients = new ArrayList<>();
-    private final ListDataProvider<Patient> patientsProvider = new ListDataProvider<>(patients);
     private final Binder<Patient> binder = new BeanValidationBinder<>(Patient.class);
 
     private final HorizontalLayout mainLayout = new HorizontalLayout();
@@ -85,7 +84,6 @@ public class PatientPage extends AppBar implements BeforeEnterObserver {
             }
         });
 
-        patientsGrid.setDataProvider(patientsProvider);
     }
 
     private void createEditorForm() {
@@ -114,7 +112,7 @@ public class PatientPage extends AppBar implements BeforeEnterObserver {
     private void displayData() {
         patients.clear();
         patients.addAll(patientService.getAll());
-        patientsGrid.getDataProvider().refreshAll();
+        patientsGrid.setItems(patients);
     }
 
     private void createFormToolbar() {
@@ -131,9 +129,10 @@ public class PatientPage extends AppBar implements BeforeEnterObserver {
 
     private void save() {
         if (binder.writeBeanIfValid(selectedPatient)) {
-             patientService.save(selectedPatient);
+            selectedPatient = patientService.save(selectedPatient);
         }
         displayData();
+        patientsGrid.select(selectedPatient);
     }
 
     private void createBottomToolbar() {

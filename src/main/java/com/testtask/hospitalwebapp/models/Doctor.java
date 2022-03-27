@@ -42,11 +42,11 @@ public class Doctor {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Doctor doctor = (Doctor) o;
-        return name.equals(doctor.name) && surname.equals(doctor.surname) && patronymic.equals(doctor.patronymic) && specialisation.equals(doctor.specialisation);
+        return Objects.equals(id, doctor.id) && Objects.equals(name, doctor.name) && Objects.equals(surname, doctor.surname) && Objects.equals(patronymic, doctor.patronymic) && Objects.equals(specialisation, doctor.specialisation);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, surname, patronymic, specialisation);
+        return Objects.hash(id, name, surname, patronymic, specialisation);
     }
 }

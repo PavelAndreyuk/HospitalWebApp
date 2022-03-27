@@ -42,11 +42,11 @@ public class Recipe {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Recipe recipe = (Recipe) o;
-        return description.equals(recipe.description) && patient.equals(recipe.patient) && doctor.equals(recipe.doctor) && priority == recipe.priority;
+        return Objects.equals(id, recipe.id) && Objects.equals(description, recipe.description) && Objects.equals(patient, recipe.patient) && Objects.equals(doctor, recipe.doctor) && priority == recipe.priority;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(description, patient, doctor, priority);
+        return Objects.hash(id, description, patient, doctor, priority);
     }
 }

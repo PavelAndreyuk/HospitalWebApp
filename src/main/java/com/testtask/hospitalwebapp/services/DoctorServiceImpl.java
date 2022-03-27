@@ -1,4 +1,4 @@
-package com.testtask.hospitalwebapp.services.database;
+package com.testtask.hospitalwebapp.services;
 
 import com.testtask.hospitalwebapp.models.Doctor;
 import com.testtask.hospitalwebapp.repositories.DoctorRepository;

@@ -1,4 +1,4 @@
-package com.testtask.hospitalwebapp.services.database;
+package com.testtask.hospitalwebapp.services;
 
 import com.testtask.hospitalwebapp.models.Patient;
 import com.testtask.hospitalwebapp.repositories.PatientRepository;
@@ -40,10 +40,5 @@ public class PatientServiceImpl implements PatientService {
     @Override
     public List<Patient> getAll() {
         return patientRepository.findAll();
-    }
-
-    @Override
-    public Patient findById(long id) {
-        return patientRepository.findById(id);
     }
 }
