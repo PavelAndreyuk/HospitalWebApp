@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -23,6 +24,7 @@ public class RecipeServiceImpl implements RecipeService {
 
     @Nullable
     @Override
+    @Transactional
     public Recipe save(@NotNull Recipe recipe) {
         if (recipe == null) throw new NullPointerException("Recipe required");
 

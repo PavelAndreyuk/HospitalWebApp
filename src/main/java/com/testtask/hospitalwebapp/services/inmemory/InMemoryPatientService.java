@@ -36,4 +36,9 @@ public class InMemoryPatientService implements PatientService {
     public List<Patient> getAll() {
         return new ArrayList<>(patients.values());
     }
+
+    @Override
+    public Patient findById(long id) {
+        return null;
+    }
 }

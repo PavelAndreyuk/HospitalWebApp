@@ -1,6 +1,6 @@
 package com.testtask.hospitalwebapp.views;
 
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
+import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 
-public class AppBar extends HorizontalLayout {
+public class AppBar extends VerticalLayout {
 }

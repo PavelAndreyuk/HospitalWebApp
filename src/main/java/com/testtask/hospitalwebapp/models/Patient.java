@@ -22,11 +22,11 @@ public class Patient {
     @Column(name = "patient_id")
     private Long id;
 
-    @Column(name = "name")
-    private String name;
-
     @Column(name = "surname")
     private String surname;
+
+    @Column(name = "name")
+    private String name;
 
     @Column(name = "patronymic")
     private String patronymic;
