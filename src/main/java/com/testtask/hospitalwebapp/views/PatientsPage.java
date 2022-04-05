@@ -10,7 +10,6 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
 import com.vaadin.flow.data.binder.Binder;
-import com.vaadin.flow.data.provider.ListDataProvider;
 import com.vaadin.flow.router.BeforeEnterEvent;
 import com.vaadin.flow.router.BeforeEnterObserver;
 import com.vaadin.flow.router.Route;
@@ -21,7 +20,7 @@ import java.util.List;
 import java.util.Set;
 
 @Route(value = "patients", layout = RootLayout.class)
-public class PatientPage extends AppBar implements BeforeEnterObserver {
+public class PatientsPage extends AppBar implements BeforeEnterObserver {
     private final PatientService patientService;
 
     private final Grid<Patient> patientsGrid = new Grid<>();
@@ -49,7 +48,7 @@ public class PatientPage extends AppBar implements BeforeEnterObserver {
     private Patient selectedPatient;
 
     @Autowired
-    public PatientPage(PatientService patientService) {
+    public PatientsPage(PatientService patientService) {
         this.patientService = patientService;
 
         createGrid();

@@ -12,7 +12,7 @@ public class RootLayout extends AppLayout implements RouterLayout {
         VerticalLayout tabs = new VerticalLayout();
 
         tabs.add(new RouterLink("Home", HomePage.class));
-        tabs.add(new RouterLink("Patients", PatientPage.class));
+        tabs.add(new RouterLink("Patients", PatientsPage.class));
         tabs.add(new RouterLink("Doctors", DoctorsPage.class));
         tabs.add(new RouterLink("Recipes", RecipesPage.class));
 
