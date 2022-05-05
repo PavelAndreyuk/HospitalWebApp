@@ -22,7 +22,6 @@ public class DoctorServiceImpl implements DoctorService {
         this.doctorRepository = doctorRepository;
     }
 
-
     @Nullable
     @Override
     @Transactional

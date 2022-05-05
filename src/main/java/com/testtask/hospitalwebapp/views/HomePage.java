@@ -5,6 +5,7 @@ import com.vaadin.flow.router.Route;
 
 @Route(value = "", layout = RootLayout.class)
 public class HomePage extends AppBar {
+
     public HomePage() {
         add(new Span("Welcome to Hospital Web App"));
     }

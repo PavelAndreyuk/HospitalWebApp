@@ -1,10 +1,13 @@
 package com.testtask.hospitalwebapp.views;
 
+import com.testtask.hospitalwebapp.annotations.Permissions;
 import com.testtask.hospitalwebapp.models.Doctor;
 import com.testtask.hospitalwebapp.services.DoctorService;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.Span;
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
@@ -19,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+@Permissions({"doctors"})
 @Route(value = "doctors", layout = RootLayout.class)
 public class DoctorsPage extends AppBar implements BeforeEnterObserver {
     private final DoctorService doctorService;
@@ -40,7 +44,7 @@ public class DoctorsPage extends AppBar implements BeforeEnterObserver {
     private final TextField patronymicField = new TextField();
     private final TextField specialisationField = new TextField();
 
-    private final Button removeButton = new Button("Remove");
+    private final Button deleteButton = new Button("Delete");
     private final Button cancelButton = new Button("Cancel");
     private final Button saveButton = new Button("Save");
     private final Button addButton = new Button("Add");
@@ -59,8 +63,7 @@ public class DoctorsPage extends AppBar implements BeforeEnterObserver {
         hideEditorForm();
 
         doctorsGridLayout.add(patientsGrid);
-        mainLayout.setHeightFull();
-        mainLayout.setWidthFull();
+        mainLayout.setSizeFull();
         mainLayout.add(doctorsGridLayout, editorFormLayout);
         add(mainLayout, bottomToolbar);
     }
@@ -80,6 +83,7 @@ public class DoctorsPage extends AppBar implements BeforeEnterObserver {
                 hideEditorForm();
             } else {
                 showEditorForm();
+                deleteButton.setVisible(true);
             }
         });
 
@@ -117,21 +121,26 @@ public class DoctorsPage extends AppBar implements BeforeEnterObserver {
     private void createFormToolbar() {
         saveButton.addClickListener(event -> save());
         cancelButton.addClickListener(event -> binder.readBean(selectedDoctor));
-        removeButton.addClickListener(event -> {
+        deleteButton.addClickListener(event -> {
             doctorService.delete(selectedDoctor);
             displayData();
             selectedDoctor = new Doctor();
             hideEditorForm();
         });
-        formToolbar.add(removeButton, cancelButton, saveButton);
+
+        deleteButton.addThemeVariants(ButtonVariant.LUMO_ERROR);
+        saveButton.addThemeVariants(ButtonVariant.LUMO_SUCCESS);
+        formToolbar.add(deleteButton, cancelButton, saveButton);
+        formToolbar.setJustifyContentMode(JustifyContentMode.BETWEEN);
     }
 
     private void save() {
         if (binder.writeBeanIfValid(selectedDoctor)) {
             selectedDoctor = doctorService.save(selectedDoctor);
+            Notification.show("Doctor hs been saved");
+            displayData();
+            patientsGrid.select(selectedDoctor);
         }
-        displayData();
-        patientsGrid.select(selectedDoctor);
     }
 
     private void createBottomToolbar() {
@@ -139,6 +148,7 @@ public class DoctorsPage extends AppBar implements BeforeEnterObserver {
             selectedDoctor = new Doctor();
             patientsGrid.deselectAll();
             showEditorForm();
+            deleteButton.setVisible(false);
         });
         bottomToolbar.add(addButton);
     }

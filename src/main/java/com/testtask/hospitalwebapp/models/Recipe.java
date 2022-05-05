@@ -1,9 +1,6 @@
 package com.testtask.hospitalwebapp.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -12,7 +9,7 @@ import java.util.Objects;
 @Setter
 @Getter
 @ToString
-@AllArgsConstructor
+@NoArgsConstructor
 public class Recipe {
     @Id
     @GeneratedValue
@@ -34,19 +31,10 @@ public class Recipe {
     @Column(name = "priority")
     private Priority priority;
 
-    public Recipe() {
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Recipe recipe = (Recipe) o;
-        return Objects.equals(id, recipe.id) && Objects.equals(description, recipe.description) && Objects.equals(patient, recipe.patient) && Objects.equals(doctor, recipe.doctor) && priority == recipe.priority;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, description, patient, doctor, priority);
+    public Recipe(String description, Patient patient, Doctor doctor, Priority priority) {
+        this.description = description;
+        this.patient = patient;
+        this.doctor = doctor;
+        this.priority = priority;
     }
 }

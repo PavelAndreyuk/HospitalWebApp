@@ -1,0 +1,42 @@
+.router-link:not([highlight]) {
+        color: white;
+        background-color: blue;
+}
+
+.router-link {
+    color: white;
+    background-color: blueviolet;
+}
+
+.appBarParentLayout {
+    padding-left: 0;
+    margin: 0;
+}
+
+.userNameSpan {
+    border: 3px solid white;
+    margin: 8px;
+    color: white;
+    padding: 4px;
+    --lumo-clickable-cursor: pointer;
+    cursor: var(--lumo-clickable-cursor);
+    background-color: blue;
+}
+
+.titleSpan {
+    color: white;
+    padding: 15px;
+}
+
+.formTitle {
+   font-weight: 1000;
+}
+
+.auditTitle {
+   font-size: 12px;
+}
+
+.localeSpan {
+   color: white;
+   cursor: pointer;
+}
