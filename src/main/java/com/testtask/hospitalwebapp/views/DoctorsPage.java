@@ -137,9 +137,15 @@ public class DoctorsPage extends AppBar implements BeforeEnterObserver {
     private void save() {
         if (binder.writeBeanIfValid(selectedDoctor)) {
             selectedDoctor = doctorService.save(selectedDoctor);
-            Notification.show("Doctor hs been saved");
+            Notification.show("Doctor has been saved");
             displayData();
-            patientsGrid.select(selectedDoctor);
+            doctors.stream()
+                    .filter(patient -> patient.equals(selectedDoctor))
+                    .findFirst()
+                    .ifPresent(selectedPatient -> {
+                        this.selectedDoctor = selectedPatient;
+                        patientsGrid.select(selectedPatient);
+                    });
         }
     }
 
