@@ -14,7 +14,9 @@ import com.vaadin.flow.router.RouterLayout;
 import com.vaadin.flow.router.RouterLink;
 
 public class RootLayout extends AppLayout implements RouterLayout {
+
     private final SessionService sessionService;
+
     private final Span titleSpan = new Span();
 
     public RootLayout(SessionService sessionService) {

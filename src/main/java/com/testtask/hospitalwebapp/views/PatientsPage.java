@@ -25,6 +25,7 @@ import java.util.Set;
 @Permissions({"patients"})
 @Route(value = "patients", layout = RootLayout.class)
 public class PatientsPage extends AppBar implements BeforeEnterObserver {
+
     private final PatientService patientService;
 
     private final Grid<Patient> patientsGrid = new Grid<>();

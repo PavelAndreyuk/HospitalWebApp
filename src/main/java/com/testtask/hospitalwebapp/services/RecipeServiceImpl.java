@@ -15,6 +15,7 @@ import java.util.List;
 @Service
 @Profile("prod")
 public class RecipeServiceImpl implements RecipeService {
+
     private final RecipeRepository recipeRepository;
 
     @Autowired
@@ -22,7 +23,6 @@ public class RecipeServiceImpl implements RecipeService {
         this.recipeRepository = recipeRepository;
     }
 
-    @Nullable
     @Override
     @Transactional
     public Recipe save(@NotNull Recipe recipe) {

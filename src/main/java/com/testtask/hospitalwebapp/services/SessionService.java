@@ -17,6 +17,7 @@ public class SessionService {
         if (user == null) {
             throw new NullPointerException("User must have a value");
         }
+
         VaadinSession.getCurrent().setAttribute("user", user);
     }
 

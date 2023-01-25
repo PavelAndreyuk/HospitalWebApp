@@ -1,10 +1,7 @@
 package com.testtask.hospitalwebapp.models;
 
 import com.testtask.hospitalwebapp.PostgreSQLEnumType;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 import org.hibernate.annotations.TypeDefs;
@@ -13,12 +10,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-@Entity
-@Table(name = "users")
-@Getter
-@Setter
-@ToString
-@NoArgsConstructor
+@Entity(name = "users")
+@Data
 @TypeDefs({
         @TypeDef(
                 name = "pgsql_enum",
@@ -31,7 +24,6 @@ public class User {
     @GeneratedValue
     private Integer id;
 
-    @Column(name = "name")
     @NotNull
     @NotEmpty
     private String name;
@@ -41,6 +33,9 @@ public class User {
     @Type(type = "pgsql_enum")
     @NotNull
     private UserRole role;
+
+    public User() {
+    }
 
     public User(String name, UserRole role) {
         this.name = name;

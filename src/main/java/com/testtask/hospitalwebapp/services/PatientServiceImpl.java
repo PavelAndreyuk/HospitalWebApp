@@ -15,6 +15,7 @@ import java.util.List;
 @Service
 @Profile("prod")
 public class PatientServiceImpl implements PatientService {
+
     private final PatientRepository patientRepository;
 
     @Autowired
@@ -22,7 +23,6 @@ public class PatientServiceImpl implements PatientService {
         this.patientRepository = patientRepository;
     }
 
-    @Nullable
     @Override
     public Patient save(@NotNull Patient patient) {
         if (patient == null) throw new NullPointerException("Patient required");

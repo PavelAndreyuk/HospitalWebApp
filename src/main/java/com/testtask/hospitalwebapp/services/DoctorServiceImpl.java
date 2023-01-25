@@ -15,6 +15,7 @@ import java.util.List;
 @Service
 @Profile("prod")
 public class DoctorServiceImpl implements DoctorService {
+
     private final DoctorRepository doctorRepository;
 
     @Autowired
@@ -22,7 +23,6 @@ public class DoctorServiceImpl implements DoctorService {
         this.doctorRepository = doctorRepository;
     }
 
-    @Nullable
     @Override
     @Transactional
     public Doctor save(@NotNull Doctor doctor) {

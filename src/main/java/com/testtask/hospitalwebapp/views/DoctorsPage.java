@@ -25,9 +25,10 @@ import java.util.Set;
 @Permissions({"doctors"})
 @Route(value = "doctors", layout = RootLayout.class)
 public class DoctorsPage extends AppBar implements BeforeEnterObserver {
+
     private final DoctorService doctorService;
 
-    private final Grid<Doctor> patientsGrid = new Grid<>();
+    private final Grid<Doctor> doctorsGrid = new Grid<>();
     private final List<Doctor> doctors = new ArrayList<>();
     private final Binder<Doctor> binder = new BeanValidationBinder<>(Doctor.class);
 
@@ -62,19 +63,19 @@ public class DoctorsPage extends AppBar implements BeforeEnterObserver {
 
         hideEditorForm();
 
-        doctorsGridLayout.add(patientsGrid);
+        doctorsGridLayout.add(doctorsGrid);
         mainLayout.setSizeFull();
         mainLayout.add(doctorsGridLayout, editorFormLayout);
         add(mainLayout, bottomToolbar);
     }
 
     private void createGrid() {
-        patientsGrid.addColumn(Doctor::getSurname).setHeader("Surname").setSortable(true);
-        patientsGrid.addColumn(Doctor::getName).setHeader("Name").setSortable(true);
-        patientsGrid.addColumn(Doctor::getPatronymic).setHeader("Patronymic").setSortable(true);
-        patientsGrid.addColumn(Doctor::getSpecialisation).setHeader("Specialisation").setSortable(true);
+        doctorsGrid.addColumn(Doctor::getSurname).setHeader("Surname").setSortable(true);
+        doctorsGrid.addColumn(Doctor::getName).setHeader("Name").setSortable(true);
+        doctorsGrid.addColumn(Doctor::getPatronymic).setHeader("Patronymic").setSortable(true);
+        doctorsGrid.addColumn(Doctor::getSpecialisation).setHeader("Specialisation").setSortable(true);
 
-        patientsGrid.addSelectionListener(event -> {
+        doctorsGrid.addSelectionListener(event -> {
             Set<Doctor> selectedItems = event.getAllSelectedItems();
             for (Doctor selectedItem : selectedItems) {
                 selectedDoctor = selectedItem;
@@ -115,7 +116,7 @@ public class DoctorsPage extends AppBar implements BeforeEnterObserver {
     private void displayData() {
         doctors.clear();
         doctors.addAll(doctorService.getAll());
-        patientsGrid.setItems(doctors);
+        doctorsGrid.setItems(doctors);
     }
 
     private void createFormToolbar() {
@@ -144,7 +145,7 @@ public class DoctorsPage extends AppBar implements BeforeEnterObserver {
                     .findFirst()
                     .ifPresent(selectedPatient -> {
                         this.selectedDoctor = selectedPatient;
-                        patientsGrid.select(selectedPatient);
+                        doctorsGrid.select(selectedPatient);
                     });
         }
     }
@@ -152,7 +153,7 @@ public class DoctorsPage extends AppBar implements BeforeEnterObserver {
     private void createBottomToolbar() {
         addButton.addClickListener(event -> {
             selectedDoctor = new Doctor();
-            patientsGrid.deselectAll();
+            doctorsGrid.deselectAll();
             showEditorForm();
             deleteButton.setVisible(false);
         });

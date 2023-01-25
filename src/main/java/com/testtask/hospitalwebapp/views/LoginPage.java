@@ -19,9 +19,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 @Slf4j
 @Route("login")
 public class LoginPage extends HorizontalLayout {
+
     private final UserService userService;
     private final SessionService sessionService;
-    private TextField loginTextField;
+
+    private final TextField loginField = new TextField();
 
     @Autowired
     public LoginPage(UserService userService,
@@ -32,22 +34,22 @@ public class LoginPage extends HorizontalLayout {
     }
 
     private void displayLogin() {
-        setHeight("100%");
+        setHeightFull();
         setAlignItems(Alignment.CENTER);
 
-        loginTextField = new TextField();
-        loginTextField.setPrefixComponent(VaadinIcon.USER.create());
-        loginTextField.focus();
-        VerticalLayout verticalLayout = new VerticalLayout();
+        loginField.setPrefixComponent(VaadinIcon.USER.create());
+        loginField.focus();
+        VerticalLayout loginLayout = new VerticalLayout();
 
-        verticalLayout.setAlignItems(Alignment.CENTER);
-        verticalLayout.add(new Span("Enter a login:"));
-        verticalLayout.add(loginTextField);
-        Button loginButton = new Button("Login", event -> login(loginTextField.getValue()));
+        loginLayout.setAlignItems(Alignment.CENTER);
+        loginLayout.add(new Span("Enter a login:"), loginField);
+
+        Button loginButton = new Button("Login", event -> login(loginField.getValue()));
         loginButton.addClickShortcut(Key.ENTER);
-        verticalLayout.add(loginButton);
 
-        add(verticalLayout);
+        loginLayout.add(loginButton);
+
+        add(loginLayout);
     }
 
     public void login(String login) {
