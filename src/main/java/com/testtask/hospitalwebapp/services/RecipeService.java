@@ -4,11 +4,6 @@ import com.testtask.hospitalwebapp.models.Recipe;
 
 import java.util.List;
 
-public interface RecipeService {
+public interface RecipeService extends BaseService<Recipe> {
 
-    Recipe save(Recipe recipe);
-
-    void delete(Recipe recipe);
-
-    List<Recipe> getAll();
 }
