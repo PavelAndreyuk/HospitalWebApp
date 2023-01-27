@@ -4,11 +4,11 @@ import com.testtask.hospitalwebapp.services.BaseService;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.grid.Grid;
-import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.function.ValueProvider;
 import com.vaadin.flow.router.BeforeEnterEvent;
@@ -130,6 +130,10 @@ public abstract class AbstractGridPage<ROW> extends AppBar implements BeforeEnte
 
     protected void addColumn(ValueProvider<ROW, ?> valueProvider, String header) {
         grid.addColumn(valueProvider).setHeader(header).setSortable(true);
+    }
+
+    protected void configureField(TextField field, String property) {
+        getBinder().forField(field).bind(property);
     }
 
     private void createBottomToolbar() {
