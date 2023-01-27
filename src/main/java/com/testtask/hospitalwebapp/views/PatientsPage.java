@@ -51,8 +51,8 @@ public class PatientsPage extends AbstractGridPage<Patient> {
     }
 
     @Override
-    protected void createEditorForm() {
-        editorFormLayout.add(headerSpan, surnameField, nameField, patronymicField, phoneNumberField, formToolbar);
+    protected void addFieldsToEditorForm() {
+        getEditorFormLayout().add(surnameField, nameField, patronymicField, phoneNumberField);
     }
 
     protected void initializeFormFields() {

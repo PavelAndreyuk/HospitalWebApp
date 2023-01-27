@@ -26,11 +26,9 @@ public abstract class AbstractGridPage<ROW> extends AppBar implements BeforeEnte
     private final HorizontalLayout mainLayout = new HorizontalLayout();
     private final VerticalLayout gridLayout = new VerticalLayout();
     private final HorizontalLayout bottomToolbar = new HorizontalLayout();
+    private final HorizontalLayout formToolbar = new HorizontalLayout();
 
-    // TODO get rid of protected fields
-    protected VerticalLayout editorFormLayout;
-    protected HorizontalLayout formToolbar;
-    protected Span headerSpan;
+    private VerticalLayout editorFormLayout;
 
     private final Button deleteButton = new Button("Delete");
     private final Button cancelButton = new Button("Cancel");
@@ -59,8 +57,12 @@ public abstract class AbstractGridPage<ROW> extends AppBar implements BeforeEnte
 
     protected abstract void createGrid();
 
-    // TODO think how to improve this method
-    protected abstract void createEditorForm();
+    private void createEditorForm() {
+        addFieldsToEditorForm();
+        editorFormLayout.add(formToolbar);
+    }
+
+    protected abstract void addFieldsToEditorForm();
 
     private void addSelectorListenerToGrid() {
         grid.addSelectionListener(event -> {
@@ -81,8 +83,6 @@ public abstract class AbstractGridPage<ROW> extends AppBar implements BeforeEnte
         initializeFormFields();
 
         editorFormLayout = new VerticalLayout();
-        formToolbar = new HorizontalLayout();
-        headerSpan = new Span();
 
         editorFormLayout.setWidth("500px");
         editorFormLayout.setAlignItems(FlexComponent.Alignment.CENTER);
@@ -149,6 +149,11 @@ public abstract class AbstractGridPage<ROW> extends AppBar implements BeforeEnte
 
     private void hideEditorForm() {
         editorFormLayout.setVisible(false);
+    }
+
+    // TODO get rid of this getter
+    public VerticalLayout getEditorFormLayout() {
+        return editorFormLayout;
     }
 
     // TODO get rid of lazy initialisation
