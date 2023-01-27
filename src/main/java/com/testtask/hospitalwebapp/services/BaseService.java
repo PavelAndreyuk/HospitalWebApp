@@ -1,7 +1,5 @@
 package com.testtask.hospitalwebapp.services;
 
-import com.testtask.hospitalwebapp.models.Doctor;
-
 import java.util.List;
 
 public interface BaseService<ROW> {
